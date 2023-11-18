@@ -1,0 +1,23 @@
+Задание 1
+
+SELECT c.login, COUNT (o.*)
+FROM “Couriers” AS c
+INNER JOIN “Orders” AS o ON c.id=o.”courierId”
+WHERE SUM (o. “inDelivery”) = true
+GROUP BY c.login;
+
+
+Задание 2
+
+SELECT COUNT (track),
+               CAST (canсelled AS int),
+               CAST (finished AS int),
+               CAST (“inDelivery” AS int)
+ CASE
+       WHEN finished = true THEN 2
+       WHEN canсelled = true THEN -1
+       WHEN “inDelivery” = true THEN 1
+       ELSE 0
+END
+FROM “Orders”;
+
